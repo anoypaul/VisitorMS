@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\User\UserController;
+use App\Http\Controllers\Frontend\Visitor\VisitorController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// _______Authentication__________
+Route::get('/', [UserController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/home', [AdminController::class, 'index'])->name('admin');
+    Route::get('/appointment/list', [AdminController::class, 'list']);
+    Route::get('/appointment/create/{id}', [AdminController::class, 'create']);
+
 });
+
+Route::post('/visitor/store', [VisitorController::class, 'store']);
+Route::get('/visitor/index', [VisitorController::class, 'index']);
+Route::get('/visitor/edit/{id}', [VisitorController::class, 'edit']);
+Route::post('/visitor/update/{id}', [VisitorController::class, 'update']);
+
+
+
