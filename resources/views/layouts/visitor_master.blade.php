@@ -52,6 +52,7 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="{{url('/visitor/index')}}">Visitor</a></li>
+                <li><a href="{{url('/front-desk/create')}}">FrontDESK</a></li>
                 <li>
                   @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

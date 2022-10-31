@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\User\UserController;
 use App\Http\Controllers\Frontend\Visitor\VisitorController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Frontend\FrontDesk\FrontDeskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,10 @@ Route::post('/visitor/store', [VisitorController::class, 'store']);
 Route::get('/visitor/index', [VisitorController::class, 'index']);
 Route::get('/visitor/edit/{id}', [VisitorController::class, 'edit']);
 Route::post('/visitor/update/{id}', [VisitorController::class, 'update']);
+
+Route::get('/front-desk/create', [FrontDeskController::class, 'create']);
+Route::post('/front-desk/check', [FrontDeskController::class, 'check']);
+
 
 
 
