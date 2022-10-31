@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Frontend\Visitor\VisitorModel;
 use App\Models\Admin\Appointment\AppointmentModel;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewAppointment;
+
 
 class AdminController extends Controller
 {
@@ -24,14 +29,16 @@ class AdminController extends Controller
         return view('admin.appointment.create', compact('visitor_data'));
     }
     public function store(Request $request){
-        // echo '<pre>';
-        // print_r($request->all());
-        // exit;
         $appointment_data = new AppointmentModel();
         $appointment_data->visitor_id = $request->visitor_id;
         $appointment_data->appointment_time = $request->appointment_time;
         $appointment_data->appointment_pin = $request->appointment_pin;
         $appointment_data->save();
+        $appointment_data->email = $request->email;
+        
+        $user = User::where('role_as', '1')->get();
+        Notification::send($user, new NewAppointment($appointment_data));
+        
         $request->session()->flash('success', 'Visitor create successfully');
         return redirect()->back();
     }
