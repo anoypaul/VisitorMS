@@ -31,7 +31,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/home', [AdminController::class, 'index'])->name('admin');
     Route::get('/appointment/list', [AdminController::class, 'list']);
     Route::get('/appointment/create/{id}', [AdminController::class, 'create']);
-
+    Route::post('/appointment/store', [AdminController::class, 'store']);
 });
 
 Route::post('/visitor/store', [VisitorController::class, 'store']);

@@ -19,7 +19,7 @@
           <h5 class="text-center">Visitor Create</h5>
         </div>
         <div class="card-body">
-          <form action="{{url('/visitor/create')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{url('/appointment/store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="form-group">
@@ -33,17 +33,25 @@
                     
                   <div class="form-group">
                     <label for="name">Visitor Name</label>
-                    <input type="text" class="form-control" name="name" id="name" value="{{$visitor_data->visitor_name}}" placeholder="Enter Name">
+                    <input type="text" class="form-control" name="name" id="name" value="{{$visitor_data->visitor_name}}" readonly>
                   </div>
                   <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" class="form-control" name="email" id="email" value="{{$visitor_data->visitor_email}}" placeholder="Enter Email">
+                    <input type="email" class="form-control" name="email" id="email" value="{{$visitor_data->visitor_email}}" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Occupation</label>
+                    <input type="text" class="form-control" name="occupation" id="occupation" value="{{$visitor_data->visitor_occupation}}" readonly>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="address">Occupation</label>
-                    <input type="text" class="form-control" name="occupation" id="occupation" value="{{$visitor_data->visitor_occupation}}" placeholder="Enter Your Occupation">
+                    <label for="address">Appointment Time <span class="text-danger">*</span></label>
+                    <input type="datetime-local" class="form-control" name="appointment_time" id="appointment_time" value="" placeholder="Enter Your Occupation">
+                  </div>
+                  <div class="form-group">
+                    <label for="number">Appointment PIN <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="appointment_pin" id="appointment_pin" value="" placeholder="Enter Your Occupation">
                   </div>
                   
                 </div>
