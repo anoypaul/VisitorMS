@@ -14,40 +14,41 @@
       </div>
       <div class="card">
         <div class="card-header">
-          <h5 class="text-center">Visitor Data</h5>
+          <h5 class="text-center">Appointment Data</h5>
         </div>
         <div class="card-body table-responsive">
           <table class="table table-bordered">
             <thead>
               <tr>
                 <th scope="col">Action</th>
+                <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Phone</th>
                 <th scope="col">email</th>
-                <th scope="col">Age</th>
                 <th scope="col">Address</th>
                 <th scope="col">Occupation</th>
                 <th scope="col">Image</th>
-                <th scope="col">Date</th>
+                <th scope="col">PIN</th>
+                <th scope="col">A Date & Time</th>
               </tr>
             </thead>
             <tbody>
-              @if (count($visitor_info) >= 1)
-                @foreach ($visitor_info as $value)
+              @if (count($appointment_data) >= 1)
+                @foreach ($appointment_data as $value)
                   @php
-                      $create_date = date('D, d M Y H:i:s', strtotime($value->created_at));
+                      $create_date = date('D, d M Y H:i:s', strtotime($value->appointment_time));
                       $create_date_point = date('D, d M Y', strtotime($value->created_at));
                       $present_date = today();
                       $today_date = date('D, d M Y', strtotime($present_date));
                   @endphp
                   <tr>
-                    <th>
-                      <a class="btn btn-primary" href="{{url('/appointment/create/'.$value->visitor_id)}}">Appointment create</a>
-                    </th>
+                    <td>
+                      <a class="btn btn-primary" href="{{url('/appointment/send-data-edit/'.$value->appointment_id)}}">Edit</a>
+                    </td>
+                    <td>{{$value->appointment_id}}</td>
                     <td>{{$value->visitor_name}}</td>
                     <td>{{$value->visitor_phone}}</td>
                     <td>{{$value->visitor_email}}</td>
-                    <td>{{$value->visitor_age}}</td>
                     <td>{{$value->visitor_address}}</td>
                     <td>{{$value->visitor_occupation}}</td>
                     <td>
@@ -61,6 +62,7 @@
                         </div>
                       @endif
                     </td>
+                    <td>{{$value->appointment_pin}}</td>
                     <td>
                       @if ($today_date == $create_date_point)
                         {{$create_date}} <span class="text-danger font-weight-bold">*</span>

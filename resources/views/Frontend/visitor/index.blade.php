@@ -1,7 +1,5 @@
 @extends('layouts.visitor_master')
-
 @section('visitor_content')
-    
 <div class="row">
   <div class="col-1"></div>
   <div class="col-10 my-3">
@@ -46,20 +44,23 @@
                 <td>{{$value->visitor_address}}</td>
                 <td>{{$value->visitor_occupation}}</td>
                 <td>
-                  <div style="max-width:70px; max-height: 50px; overflow:hidden"> 
-                    <img src="{{asset('image/visitor/'. $value->visitor_image)}}" class="img-fluid" alt="">
-                  </div>
+                  @if (isset($value->visitor_image))
+                    <div style="max-width:70px; max-height: 50px; overflow:hidden"> 
+                      <img src="{{asset('image/visitor/'. $value->visitor_image)}}" class="img-fluid" alt="">
+                    </div>
+                  @else
+                    <div style="max-width:70px; max-height: 50px; overflow:hidden"> 
+                      <img src="{{asset('image/'. 'noimage.png')}}" class="img-fluid" alt="">
+                    </div>
+                  @endif
                 </td>
               </tr>
             @endforeach
-
           </tbody>
         </table>
       </div>
     </div>
   </div>
   <div class="col-1"></div>
-  
 </div>
-
 @endsection

@@ -199,10 +199,6 @@
                             </p>
                             </a>
                         </li>
-                        
-
-                        
-                        
                         <li class="nav-item">
                                 <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
@@ -214,6 +210,23 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{url('/appointment/list')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>index</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-envelope"></i>
+                                <p>
+                                    Appointment List
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                                </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('/appointment/send-data')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>index</p>
                                     </a>

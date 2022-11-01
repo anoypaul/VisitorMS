@@ -17,7 +17,7 @@ class CreateAppointmentTable extends Migration
             $table->id('appointment_id');
             $table->integer('visitor_id');
             $table->dateTime('appointment_time');
-            $table->integer('appointment_pin');
+            $table->unique('appointment_pin');
             $table->timestamps();
         });
     }

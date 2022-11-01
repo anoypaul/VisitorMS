@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\DB;
 class VisitorController extends Controller
 {
     public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'phone_number' => 'required',
+            'email' => 'required',
+            'age' => 'required',
+            'address' => 'required',
+            'occupation' => 'required',
+        ]);
         $visitor_data =new VisitorModel();
         $visitor_data->visitor_name = $request->name;
         $visitor_data->visitor_phone = $request->phone_number;

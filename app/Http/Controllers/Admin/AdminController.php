@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewAppointment;
 
-
 class AdminController extends Controller
 {
     public function index(){
@@ -29,6 +28,9 @@ class AdminController extends Controller
         return view('admin.appointment.create', compact('visitor_data'));
     }
     public function store(Request $request){
+        $request->validate([
+            'appointment_pin' => 'required',
+        ]);
         $appointment_data = new AppointmentModel();
         $appointment_data->visitor_id = $request->visitor_id;
         $appointment_data->appointment_time = $request->appointment_time;
@@ -39,7 +41,7 @@ class AdminController extends Controller
         $user = User::where('role_as', '1')->get();
         Notification::send($user, new NewAppointment($appointment_data));
         
-        $request->session()->flash('success', 'Visitor create successfully');
+        $request->session()->flash('success', 'Appointment create successfully');
         return redirect()->back();
     }
 }

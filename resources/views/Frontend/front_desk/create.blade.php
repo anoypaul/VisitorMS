@@ -26,7 +26,10 @@
               <div class="col-12">
                 <div class="form-group">
                   <label for="name">Appointment PIN</label>
-                  <input type="number" class="form-control" name="appointment_pin" id="appointment_pin" placeholder="Enter Appointment Pin">
+                  <input type="number" class="form-control" name="appointment_pin" id="appointment_pin" class="@error('appointment_pin') is-invalid @enderror" placeholder="Enter Appointment Pin">
+                  @error('appointment_pin')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                 </div>
                 {{-- <div class="form-group">
                   <label for="email">Email Address</label>
